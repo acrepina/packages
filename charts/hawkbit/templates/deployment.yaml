@@ -36,6 +36,8 @@ spec:
           env:
             - name: PROFILES
               value: "{{ .Values.spring.profiles }}"
+            - name: SPRING_CONFIG_ADDITIONAL_LOCATION
+              value: "{{ .Values.configMap.mountPath }}/"
             - name: "SPRING_DATASOURCE_URL"
               {{- if .Values.env.springDatasourceUrl }}
               value: "{{ .Values.env.springDatasourceUrl }}"
