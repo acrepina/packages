@@ -60,7 +60,7 @@ spec:
                   name: "{{ template "hawkbit.fullname" . }}-rabbitmq-pass"
                   key: "rabbitmq-pass"
             {{- if .Values.fileStorage.enabled }}
-            - name: "org.eclipse.hawkbit.repository.file.path"
+            - name: "org.eclipse.hawkbit.artifact.fs.path"
               value: {{ .Values.fileStorage.mountPath }}
             {{- end }}
             {{- range $key, $value := .Values.extraEnv }}
