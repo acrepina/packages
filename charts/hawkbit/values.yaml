@@ -87,7 +87,7 @@ ingress:
     #    service: {{ include "hawkbit.fullname" . }}
     #  - path: "/v3"
     #    service: {{ include "hawkbit.fullname" . }}
-    #²  - path: "/"
+    #  - path: "/"
     #    service: {{ include "hawkbit.fullname" . }}-simple-ui
   tls: []
   #  - secretName: hawkbit-tls
