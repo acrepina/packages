@@ -184,6 +184,7 @@ config:
       security:
         user:
           name: admin
+  externalSecret: false
   secrets:
     hawkbit:
       dmf:
