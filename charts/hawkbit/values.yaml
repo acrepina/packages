@@ -15,12 +15,12 @@
 
 image:
   repository: "hawkbit/hawkbit-update-server"
-  tag: "0.8.0"
+  tag: "0.10.0"
   pullPolicy: IfNotPresent
 
 simpleUIImage:
-  repository: "hawkbit/hawkbit-simple-ui"
-  tag: "0.8.0"
+  repository: "hawkbit/hawkbit-ui"
+  tag: "0.10.0"
   pullPolicy: IfNotPresent
 
 
@@ -87,7 +87,7 @@ ingress:
     #    service: {{ include "hawkbit.fullname" . }}
     #  - path: "/v3"
     #    service: {{ include "hawkbit.fullname" . }}
-    #²  - path: "/"
+    #  - path: "/"
     #    service: {{ include "hawkbit.fullname" . }}-simple-ui
   tls: []
   #  - secretName: hawkbit-tls
@@ -184,6 +184,7 @@ config:
       security:
         user:
           name: admin
+  externalSecret: false
   secrets:
     hawkbit:
       dmf:

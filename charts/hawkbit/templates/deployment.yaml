@@ -36,10 +36,13 @@ spec:
           env:
             - name: PROFILES
               value: "{{ .Values.spring.profiles }}"
-            - name: "SPRING_DATASOURCE_URL"
+            - name: SPRING_CONFIG_ADDITIONAL_LOCATION
+              value: "{{ .Values.configMap.mountPath }}/"
               {{- if .Values.env.springDatasourceUrl }}
+            - name: "SPRING_DATASOURCE_URL"
               value: "{{ .Values.env.springDatasourceUrl }}"
-              {{- else }}
+              {{- else if or .Values.mysql.enabled .Values.env.springDatasourceHost }}
+            - name: "SPRING_DATASOURCE_URL"
               value: "jdbc:mariadb://{{ if .Values.mysql.enabled }}{{ .Release.Name }}-mysql{{ else }}{{ .Values.env.springDatasourceHost }}{{ end }}:3306/{{ .Values.env.springDatasourceDb }}"
               {{- end }}
             - name: "SPRING_APPLICATION_JSON"
@@ -57,7 +60,7 @@ spec:
                   name: "{{ template "hawkbit.fullname" . }}-rabbitmq-pass"
                   key: "rabbitmq-pass"
             {{- if .Values.fileStorage.enabled }}
-            - name: "org.eclipse.hawkbit.repository.file.path"
+            - name: "org.eclipse.hawkbit.artifact.fs.path"
               value: {{ .Values.fileStorage.mountPath }}
             {{- end }}
             {{- range $key, $value := .Values.extraEnv }}
