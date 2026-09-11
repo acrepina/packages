@@ -181,9 +181,6 @@ config:
               destination: "device-registry.device-updated"
             device-deleted:
               destination: "device-registry.device-deleted"
-      security:
-        user:
-          name: admin
   externalSecret: false
   secrets:
     hawkbit:
@@ -191,10 +188,6 @@ config:
         hono:
           password: "[KEYCLOAK_HAWKBIT_USER_PASSWORD]"
     spring:
-      security:
-        user:
-          # the "{noop}" prefix is needed!
-          password: "{noop}admin"
       datasource:
         username: hawkbit
         password: hawkbit
